@@ -61,6 +61,19 @@ function calcularCompatibilidade(usuario, conteudo){
         classificacao,
     };    
 }
+
+function encontrarMaisCompativel(usuario, catalogo){
+    const resultados = catalogo.map((conteudo) =>
+        calcularCompatibilidade(usuario, conteudo)
+    );
+    const melhorResultado = resultados.reduce((melhor, atual) =>
+        atual.percentual > melhor.percentual ? atual : melhor   
+
+    );
+    
+    return melhorResultado;
+}
+
 function classificarAfinidade(percentual) {
     if (percentual >= 80) {
         return "Alta afinidade";
