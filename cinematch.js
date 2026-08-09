@@ -42,6 +42,20 @@ const catalogo = [
     ),
 ];
 
+function calcularCompatibilidade(usuario, conteudo){
+    const generosEmComum = conteudo.generos.filter((genero) =>
+    usuario.generosFavoritos.includes(genero)
+    );
+
+    const percentual = (generosEmComum.length / conteudo.generos.length) * 100;
+    
+    return {
+        titulo: conteudo.titulo,
+        percentual,
+        generosEmComum,
+    };    
+}
+
 console.log("- - -  CineMatch JS  - - -\n")
 
 const nome = prompt("Qual é o seu nome? - ")
