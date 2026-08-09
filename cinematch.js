@@ -46,6 +46,9 @@ function calcularCompatibilidade(usuario, conteudo){
     const generosEmComum = conteudo.generos.filter((genero) =>
     usuario.generosFavoritos.includes(genero)
     );
+    const generosNaoExplorados = conteudo.generos.filter(
+        (genero) => !usuario.generosFavoritos.includes(genero)
+    );
 
     const percentual = (generosEmComum.length / conteudo.generos.length) * 100;
     const classificacao = classificarAfinidade(percentual);
@@ -54,6 +57,7 @@ function calcularCompatibilidade(usuario, conteudo){
         titulo: conteudo.titulo,
         percentual,
         generosEmComum,
+        generosNaoExplorados,
         classificacao,
     };    
 }
