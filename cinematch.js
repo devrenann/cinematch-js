@@ -18,7 +18,7 @@ class Serie extends Conteudo {
         this.temporadas = temporadas;
     }
     exibirTemporadas() {
-        return `${this.titulo} tem ${this.temporadas} temporadas(s)`;
+        return `${this.titulo} tem ${this.temporadas} temporada(s)`;
     }
 }
 const catalogo = [
@@ -37,7 +37,7 @@ const catalogo = [
     new Conteudo(
         "Sombras do Porão",
         "Filme",
-        ["Comédia", "Romance"],
+        ["Terror", "Suspense"],
         98
     ),
 ];
@@ -97,6 +97,15 @@ function gerarRecomendacaoPersonalizada(usuario, melhorResultado) {
     }
     return `${usuario.nome}, que tal experimentar algo novo? "${melhorResultado.titulo}" pode ser uma boa!`;
 }
+function finalizarOnboarding(nomeUsuario, callback){
+    console.log("\nOnboarding finalizado com sucesso!");
+    callback(nomeUsuario);
+}
+function exibirMensagemFinal(nome){
+    console.log(`${nome}, aproveite sua maratona!`);
+}
+
+
 console.log("- - -  CineMatch JS  - - -\n")
 
 const nome = prompt("Qual é o seu nome? - ")
