@@ -48,14 +48,24 @@ function calcularCompatibilidade(usuario, conteudo){
     );
 
     const percentual = (generosEmComum.length / conteudo.generos.length) * 100;
+    const classificacao = classificarAfinidade(percentual);
     
     return {
         titulo: conteudo.titulo,
         percentual,
         generosEmComum,
+        classificacao,
     };    
 }
-
+function classificarAfinidade(percentual) {
+    if (percentual >= 80) {
+        return "Alta afinidade";
+    } else if (percentual >= 50) {
+        return "Média afinidade";
+    } else {
+        return "Baixa afinidade";
+    }
+}
 console.log("- - -  CineMatch JS  - - -\n")
 
 const nome = prompt("Qual é o seu nome? - ")
