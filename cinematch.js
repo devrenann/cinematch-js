@@ -104,7 +104,15 @@ function finalizarOnboarding(nomeUsuario, callback){
 function exibirMensagemFinal(nome){
     console.log(`${nome}, aproveite sua maratona!`);
 }
+function criarContadorDeRecomendacoes(){
+    let total = 0;
 
+    return function () {
+        total++;
+        return total;
+    };
+}
+const contarRecomendacao = criarContadorDeRecomendacoes();
 
 console.log("- - -  CineMatch JS  - - -\n")
 
