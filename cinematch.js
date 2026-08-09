@@ -50,6 +50,14 @@ function buscarCatalogoSimulado(){
     });
 }
 
+async function iniciarSistema(){
+    console.log("\n Carregando catálogo...");
+
+    const catalogoCarregado = await buscarCatalogoSimulado();
+    
+    console.log("Catálogo carregado com sucesso!")
+}
+
 function calcularCompatibilidade(usuario, conteudo){
     const generosEmComum = conteudo.generos.filter((genero) =>
     usuario.generosFavoritos.includes(genero)
@@ -140,3 +148,5 @@ const usuario = {
 
 console.log("\nPerfil criado com sucesso!");
 console.log(usuario);
+
+iniciarSistema();
