@@ -21,6 +21,26 @@ class Serie extends Conteudo {
         return `${this.titulo} tem ${this.temporadas} temporadas(s)`;
     }
 }
+const catalogo = [
+    new Serie(
+        "Fronteira Digital",
+        ["Ação", "Ficção Científica"],
+        45,
+        2
+    ),
+    new Conteudo(
+        "Risadas de Sábado",
+        "Filme",
+        ["Comédia", "Romance"],
+        98
+    ),
+    new Conteudo(
+        "Sombras do Porão",
+        "Filme",
+        ["Comédia", "Romance"],
+        98
+    ),
+];
 
 console.log("- - -  CineMatch JS  - - -\n")
 
