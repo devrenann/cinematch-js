@@ -83,6 +83,20 @@ function classificarAfinidade(percentual) {
         return "Baixa afinidade";
     }
 }
+
+function gerarRecomendacaoPersonalizada(usuario, melhorResultado) {
+    const generoConhecido = melhorResultado.generosEmComum[0];
+    const generoNovo = melhorResultado.generosNaoExplorados[0];
+
+    if (generoConhecido && generoNovo){
+        return `${usuario.nome}, você já curte ${generoConhecido} - Que tal experimentar 
+        ${generoNovo}? "${melhorResultado.titulo}" pode ser uma ótima escolha.`;
+    }
+    if (generoConhecido && !generoNovo){
+        return `${usuario.nome}, "${melhorResultado.titulo}" combina muito com os gêneros que você já gosta.`;
+    }
+    return `${usuario.nome}, que tal experimentar algo novo? "${melhorResultado.titulo}" pode ser uma boa!`;
+}
 console.log("- - -  CineMatch JS  - - -\n")
 
 const nome = prompt("Qual é o seu nome? - ")
