@@ -42,6 +42,14 @@ const catalogo = [
     ),
 ];
 
+function buscarCatalogoSimulado(){
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(catalogo);
+        }, 2000);
+    });
+}
+
 function calcularCompatibilidade(usuario, conteudo){
     const generosEmComum = conteudo.generos.filter((genero) =>
     usuario.generosFavoritos.includes(genero)
