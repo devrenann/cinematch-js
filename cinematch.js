@@ -40,13 +40,3 @@ const usuario = {
 
 console.log("\nPerfil criado com sucesso!");
 console.log(usuario);
-
-const serieTeste = new Serie(
-    "Fronteira Digital",
-    ["Ação", "Ficção Cientifica"],
-    45,
-    2
-);
-
-console.log(serieTest.exibirResumo())/
-console.log(serie
