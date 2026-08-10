@@ -38,9 +38,77 @@ const catalogo = [
         "Sombras do Porão",
         "Filme",
         ["Terror", "Suspense"],
-        98
+        110
     ),
 ];
+
+function exibirMenu(usuario, catalogo){
+    let opcao;
+    do {
+        console.log("\n********************************");
+        console.log("             CINEMATCH          ");
+        console.log("********************************");
+        console.log("(1) - Ver meu perfil");
+        console.log("(2) - Ver catálogo completo");
+        console.log("(3) - Calcular compatibilidade com todos os conteúdos");
+        console.log("(4) - Ver o conteúdo mais recomendado");
+        console.log("(5) - Sair");
+        console.log("********************************");
+
+        opcao = prompt("Escolha uma opção: ");
+
+        switch(opcao) {
+            case "1":
+                console.log("\nMeu perfil: ")
+                console.log("********************************");
+                console.log(usuario);
+                pausar();
+                break;
+            case "2":
+                console.log("\nCatálogo: ")
+                console.log("********************************");
+                catalogo.forEach((conteudo) => {
+                    console.log(conteudo.exibirResumo());
+                });
+                pausar();
+                break;
+            case "3":
+                console.log("\nCompatibilidade");
+                console.log("********************************");
+                catalogo.forEach((conteudo) => {
+                    const resultado = calcularCompatibilidade(usuario, conteudo);
+                    console.log(`\nTitulo: ${resultado.titulo}`);
+                    console.log(`Tipo: ${resultado.tipo}`);
+                    console.log(`Compatibilidade: ${resultado.percentual}%`);
+                    console.log(`Gêneros em comum: ${resultado.generosEmComum.join(", ")}`);
+                    console.log(`Gêneros não explorados: ${resultado.generosNaoExplorados.join(", ")}`);
+                    console.log(`Classificação: ${resultado.classificacao}`);
+                });
+                pausar();
+                break;                  
+            case "4":
+                const melhorResultado = encontrarMaisCompativel(usuario, catalogo);
+                const numeroRecomendacao = contarRecomendacao();
+                console.log("\nRecomendação Principal: ");
+                console.log("********************************");
+                console.log(`Recomendação nº ${numeroRecomendacao}`);
+                console.log(`Título: ${melhorResultado.titulo} (${melhorResultado.tipo})`);
+                console.log(`Compatibilidade: ${melhorResultado.percentual}%`);
+                console.log(gerarRecomendacaoPersonalizada(usuario, melhorResultado));
+                pausar();
+                break;
+            case "5":
+                finalizarOnboarding(usuario.nome, exibirMensagemFinal);
+                break;
+            default:
+                console.log("\nOpção Inválida. Tente novamente digitando uma opção correta!")
+        }
+    } while (opcao !== "5");
+}
+
+function pausar(){
+    prompt("\nPressione ENTER para voltar ao menu!")
+}
 
 function buscarCatalogoSimulado(){
     return new Promise((resolve) => {
@@ -51,11 +119,13 @@ function buscarCatalogoSimulado(){
 }
 
 async function iniciarSistema(){
-    console.log("\n Carregando catálogo...");
+    console.log("\nCarregando catálogo...");
 
     const catalogoCarregado = await buscarCatalogoSimulado();
     
     console.log("Catálogo carregado com sucesso!")
+
+    exibirMenu(usuario, catalogoCarregado);
 }
 
 function calcularCompatibilidade(usuario, conteudo){
@@ -71,6 +141,7 @@ function calcularCompatibilidade(usuario, conteudo){
     
     return {
         titulo: conteudo.titulo,
+        tipo: conteudo.tipo,
         percentual,
         generosEmComum,
         generosNaoExplorados,
@@ -130,7 +201,9 @@ function criarContadorDeRecomendacoes(){
 }
 const contarRecomendacao = criarContadorDeRecomendacoes();
 
-console.log("- - -  CineMatch JS  - - -\n")
+console.log("\n********************************");
+console.log("             CINEMATCH          ");
+console.log("********************************");
 
 const nome = prompt("Qual é o seu nome? - ")
 const idade = Number(prompt("Qual é a sua idade? - "));
