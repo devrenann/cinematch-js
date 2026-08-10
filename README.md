@@ -1,5 +1,9 @@
 # CineMatch JS
 
+Link da apresentação em video:
+https://drive.google.com/file/d/1lWJpCNs3ftNH6_wp-tMLDQY69hbbtnFl/view?usp=sharing
+
+
 ## Sobre o projeto
 
 O CineMatch JS é um projeto desenvolvido em JavaScript com Node.js que simula um sistema de recomendação de filmes e séries.
